@@ -17,6 +17,10 @@ function App() {
   }, []);
 
   const addTask = (name) => {
+    if (name.trim().length == 0) {
+      alert("Enter any text.");
+      return;
+    }
     setTasks((prev) => {
       return [...prev, { name: name, done: false }];
     });
@@ -40,6 +44,10 @@ function App() {
   };
 
   const renameTask = (index, newName) => {
+    if (newName.trim().length == 0) {
+      alert("Task name cannot be blank.");
+      return;
+    }
     setTasks((prev) => {
       const newTask = [...prev];
       newTask[index].name = newName;
