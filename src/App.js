@@ -6,7 +6,7 @@ import TaskForm from "./TaskForm";
 function App() {
   const [tasks, setTasks] = useState([]);
   useEffect(() => {
-    if (tasks.length == 0) return;
+    // if (tasks.length == 0) return;
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
@@ -45,8 +45,8 @@ function App() {
     });
   };
 
-  const total = tasks.length;
-  const completed = tasks.filter((t) => t.done).length;
+  const total = tasks?.length;
+  const completed = tasks?.filter((t) => t.done)?.length;
 
   const getMotivation = () => {
     const motivationalQuotes = [
@@ -81,9 +81,9 @@ function App() {
         {completed}/{total} Complete
       </h1>
       <h4>{getMotivation()}</h4>
-      {completed == total && <h2>Nice job for today! 😍👌</h2>}
+      {total != 0 && completed == total && <h2>Nice job for today! 😍👌</h2>}
       <TaskForm onAdd={addTask} />
-      {tasks.map((task, index) => (
+      {tasks?.map((task, index) => (
         <Task
           {...task}
           onToggle={(done) => updateTaskDone(index, done)}
