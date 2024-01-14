@@ -7,7 +7,8 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const [lastItem, setLastItem] = useState(false);
   useEffect(() => {
-    if (!lastItem && tasks.length == 0) return;
+    if (localStorage.getItem("tasks") != null)
+      if (!lastItem && tasks.length == 0) return;
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
